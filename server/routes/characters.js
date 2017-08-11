@@ -11,17 +11,29 @@ const publicKey = process.env.PUBLIC_KEY
 
 router.get('/characters', (req, res) => {
   request
-    .get(`${process.env.URL}/v1/public/comics?ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`)
+    .get(`${process.env.URL}/v1/public/characters?ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`)
     .set('Accept', 'application/json')
     .end((error, response) => {
-      error
-      ? console.log(error)
-      : res.json(response.body)
+      error ? console.log(error) : res.json(response.body)
     })
 })
 
+router.get('/characters/:id', (req, res) => {
+  request
+    .get(`${process.env.URL}/v1/public/characters/${req.params.id}?ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`)
+    .set('Accept', 'application/json')
+    .end((error, response) => {
+      error ? console.log(error) : res.json(response.body)
+    })
+})
 
-
-// utils.createHash(timeStamp, process.env.PRIVATE_KEY, process.env.PUBLIC_KEY)
+router.get('/characters/search/:name', (req, res) => {
+  request
+    .get(`${process.env.URL}/v1/public/characters?name=${req.params.name}&ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`)
+    .set('Accept', 'application/json')
+    .end((error, response) => {
+      error ? console.log(error) : res.json(response.body)
+    })
+})
 
 module.exports = router

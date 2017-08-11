@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 
 const characters = require('./routes/characters')
+const comics = require('./routes/comics')
 
 const corsOptions = {
   origin: true,
@@ -19,6 +20,7 @@ server.use(bodyParser.json())
 server.use(express.static(path.join(__dirname, '../public')))
 
 server.use('/api/v1', characters)
+server.use('/api/v1', comics)
 
 module.exports = function(db) {
   server.set('db', db)
