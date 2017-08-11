@@ -20,5 +20,16 @@ router.get('/comics', (req, res) => {
     })
 })
 
+router.get('/comics/year/:year', (req, res) => {
+  request
+    .get(`${process.env.URL}/v1/public/comics?format=comic&startYear=${req.params.year}&ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`)
+    .set('Accept', 'application/json')
+    .end((error, response) => {
+      error
+      ? console.log(error)
+      : res.json(response.body)
+    })
+})
+
 
 module.exports = router
