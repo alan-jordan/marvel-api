@@ -12,7 +12,6 @@ class CharacterSearch extends React.Component {
     return (
       <form>
         <input type='text' name='character' placeholder='find a character...' />
-        <br />
         <input type='submit' value='search' />
       </form>
     )
