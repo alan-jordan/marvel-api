@@ -14976,7 +14976,7 @@ var _FlatButton2 = _interopRequireDefault(_FlatButton);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var style = {
-  width: '464px'
+  width: '250px'
 };
 
 var ChracterCard = function ChracterCard() {
@@ -14989,7 +14989,7 @@ var ChracterCard = function ChracterCard() {
       _react2.default.createElement(
         _Card.CardMedia,
         { overlay: _react2.default.createElement(_Card.CardTitle, { title: 'Thor' }) },
-        _react2.default.createElement('img', { src: 'http://i.annihil.us/u/prod/marvel/i/mg/d/d0/5269657a74350/landscape_incredible.jpg', alt: 'Thor' })
+        _react2.default.createElement('img', { src: 'http://i.annihil.us/u/prod/marvel/i/mg/d/d0/5269657a74350/standard_fantastic.jpg', alt: 'Thor' })
       ),
       _react2.default.createElement(
         _Card.CardText,
@@ -15145,8 +15145,8 @@ function characters() {
   var action = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
   switch (action.type) {
-    case 'SET_CHARACTER_NAME':
-      return action.name;
+    case 'SET_CHARACTER':
+      return action.characterObj;
     default:
       return state;
   }

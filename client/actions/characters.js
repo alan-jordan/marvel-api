@@ -1,9 +1,19 @@
 import request from 'superagent'
 
-export const setCharacterName = (name) => {
+import * as errors from './errors'
+
+export const getCharacter = (searchStr) => {
+  return (dispatch) => {
+    request
+      .get(`/api/v1/characters/search/${searchStr}`)
+      .end((err, res) => err ? dispatch(errors.throwError(err.message) : dispatch(setCharacter(res.body.data))))
+  }
+}
+
+export const setCharacter = (characterObj) => {
   return {
-    type: 'SET_CHARACTER_NAME',
-    name
+    type: 'SET_CHARACTER',
+    characterObj
   }
 }
 

@@ -4,14 +4,14 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import FlatButton from 'material-ui/FlatButton'
 
 const style = {
-  width: '464px'
+  width: '250px'
 }
 
 const ChracterCard = () => (
   <MuiThemeProvider>
     <Card style={style}>
       <CardMedia overlay={<CardTitle title="Thor" />}>
-      <img src="http://i.annihil.us/u/prod/marvel/i/mg/d/d0/5269657a74350/landscape_incredible.jpg" alt="Thor" />
+      <img src="http://i.annihil.us/u/prod/marvel/i/mg/d/d0/5269657a74350/standard_fantastic.jpg" alt="Thor" />
       </CardMedia>
       <CardText>
         As the Norse God of thunder and lightning, Thor wields one of the greatest weapons ever made, the enchanted
