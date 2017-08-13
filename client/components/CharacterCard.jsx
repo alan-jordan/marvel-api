@@ -6,10 +6,8 @@ import FlatButton from 'material-ui/FlatButton'
 const ChracterCard = () => (
   <MuiThemeProvider>
     <Card>
-      <CardMedia
-        overlay={<CardTitle title="Thor" />}
-      >
-        <img src="http://i.annihil.us/u/prod/marvel/i/mg/d/d0/5269657a74350/landscape_incredible.jpg" alt="" />
+      <CardMedia overlay={<CardTitle title="Thor" />}>
+      <img src="http://i.annihil.us/u/prod/marvel/i/mg/d/d0/5269657a74350/landscape_incredible.jpg" alt="Thor" />
       </CardMedia>
       <CardText>
         As the Norse God of thunder and lightning, Thor wields one of the greatest weapons ever made, the enchanted

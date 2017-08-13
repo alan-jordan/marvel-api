@@ -14223,10 +14223,8 @@ var ChracterCard = function ChracterCard() {
       null,
       _react2.default.createElement(
         _Card.CardMedia,
-        {
-          overlay: _react2.default.createElement(_Card.CardTitle, { title: 'Thor' })
-        },
-        _react2.default.createElement('img', { src: 'http://i.annihil.us/u/prod/marvel/i/mg/d/d0/5269657a74350/landscape_incredible.jpg', alt: '' })
+        { overlay: _react2.default.createElement(_Card.CardTitle, { title: 'Thor' }) },
+        _react2.default.createElement('img', { src: 'http://i.annihil.us/u/prod/marvel/i/mg/d/d0/5269657a74350/landscape_incredible.jpg', alt: 'Thor' })
       ),
       _react2.default.createElement(
         _Card.CardText,
