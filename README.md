@@ -7,7 +7,6 @@ Doco on the Marvel API is here https://developer.marvel.com/documentation/gettin
 
 What I would like to do
 Learn new stuff!
-- Play with Feathers
 - Play with React/Redux some more
 - Build a boilerplate from scratch myself (use Yeoman?)
 - Build a wicked UI that displays comic artwork
