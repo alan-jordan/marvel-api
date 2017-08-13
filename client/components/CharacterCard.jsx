@@ -3,9 +3,13 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
 
+const style = {
+  width: '464px'
+}
+
 const ChracterCard = () => (
   <MuiThemeProvider>
-    <Card>
+    <Card style={style}>
       <CardMedia overlay={<CardTitle title="Thor" />}>
       <img src="http://i.annihil.us/u/prod/marvel/i/mg/d/d0/5269657a74350/landscape_incredible.jpg" alt="Thor" />
       </CardMedia>
