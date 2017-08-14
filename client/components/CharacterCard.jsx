@@ -5,7 +5,8 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import FlatButton from 'material-ui/FlatButton'
 
 const style = {
-  width: '250px'
+  width: '100vw',
+  margin: '0 auto'
 }
 
 class ChracterCard extends React.Component {

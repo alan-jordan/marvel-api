@@ -4,11 +4,13 @@ import {connect} from 'react-redux'
 
 import Header from './Header'
 import CharacterCard from './CharacterCard'
+import CharacterSearch from './CharacterSearch'
 
 const App = () => (
   <Router>
     <div className='app-container'>
       <Header />
+      <CharacterSearch />
       <CharacterCard />
     </div>
   </Router>

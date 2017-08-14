@@ -1,13 +1,17 @@
 import React from 'react'
+import AppBar from 'material-ui/AppBar'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
-import CharacterSearch from './CharacterSearch'
+const style = {
+  width: '100vw',
+  margin: '0 auto'
+}
 
 const Header = () => {
   return (
-    <div className='header'>
-      <h1>Marvel API Fun</h1>
-      <CharacterSearch />
-    </div>
+    <MuiThemeProvider>
+      <AppBar style ={style} title="Marvel API" />
+    </MuiThemeProvider>
   )
 }
 

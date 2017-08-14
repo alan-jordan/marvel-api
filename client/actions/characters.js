@@ -15,7 +15,7 @@ export const setCharacter = (characterObj) => {
     type: 'SET_CHARACTER',
     character: {
       name: characterObj.results[0].name,
-      characterImage: `${characterObj.results[0].thumbnail.path}/standard_fantastic.${characterObj.results[0].thumbnail.extension}`,
+      characterImage: `${characterObj.results[0].thumbnail.path}/detail.${characterObj.results[0].thumbnail.extension}`,
       description: `${characterObj.results[0].description}`
     }
   }
