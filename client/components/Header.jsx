@@ -3,7 +3,7 @@ import AppBar from 'material-ui/AppBar'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 const style = {
-  width: '100vw',
+  width: '90vw',
   margin: '0 auto'
 }
 

@@ -5,7 +5,7 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import FlatButton from 'material-ui/FlatButton'
 
 const style = {
-  width: '100vw',
+  width: '90vw',
   margin: '0 auto'
 }
 
