@@ -1,4 +1,5 @@
 import React from 'react'
+import {connect} from 'react-redux'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
@@ -7,19 +8,31 @@ const style = {
   width: '250px'
 }
 
-const ChracterCard = () => (
-  <MuiThemeProvider>
-    <Card style={style}>
-      <CardMedia overlay={<CardTitle title="Thor" />}>
-      <img src="http://i.annihil.us/u/prod/marvel/i/mg/d/d0/5269657a74350/standard_fantastic.jpg" alt="Thor" />
-      </CardMedia>
-      <CardText>
-        As the Norse God of thunder and lightning, Thor wields one of the greatest weapons ever made, the enchanted
-        hammer Mjolnir. While others have described Thor as an over-muscled, oafish imbecile, he's quite smart and
-        compassionate. He's self-assured, and he would never, ever stop fighting for a worthwhile cause.
-      </CardText>
-    </Card>
-  </MuiThemeProvider>
-)
+class ChracterCard extends React.Component {
 
-export default ChracterCard
+  componentWillReceiveProps(nextProps) {
+  }
+
+  render() {
+    return (
+        <MuiThemeProvider>
+          <Card style={style}>
+            <CardMedia overlay={<CardTitle title={this.props.character.name} />}>
+            <img src={this.props.character.characterImage} alt={this.props.character.name} />
+          </CardMedia>
+          <CardText>
+            {this.props.character.description}
+          </CardText>
+        </Card>
+      </MuiThemeProvider>
+    )
+  }
+}
+
+function mapStateToProps (state) {
+  return {
+    character: state.characters
+  }
+}
+
+export default connect(mapStateToProps)(ChracterCard)

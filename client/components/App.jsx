@@ -1,5 +1,6 @@
 import React from 'react'
 import {HashRouter as Router, Route} from 'react-router-dom'
+import {connect} from 'react-redux'
 
 import Header from './Header'
 import CharacterCard from './CharacterCard'
@@ -8,7 +9,7 @@ const App = () => (
   <Router>
     <div className='app-container'>
       <Header />
-      <Route path ='/test' exact component={CharacterCard} />
+      <CharacterCard />
     </div>
   </Router>
 )

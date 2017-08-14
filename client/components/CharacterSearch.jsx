@@ -1,16 +1,18 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
+import {getCharacter} from '../actions/characters'
+
 class CharacterSearch extends React.Component {
 
-  handleChange(e) {
+  handleSubmit(e) {
     e.preventDefault()
-    e.target.name = e.target.value
+    this.props.dispatch(getCharacter(e.target.character.value))
   }
 
   render() {
     return (
-      <form>
+      <form name='characterSearch' className='characterSearch'  onSubmit={this.handleSubmit.bind(this)} >
         <input type='text' name='character' placeholder='find a character...' />
         <input type='submit' value='search' />
       </form>
@@ -18,4 +20,4 @@ class CharacterSearch extends React.Component {
   }
 }
 
-export default CharacterSearch
+export default connect()(CharacterSearch)
