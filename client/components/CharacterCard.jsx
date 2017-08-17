@@ -17,7 +17,8 @@ class ChracterCard extends React.Component {
   renderComics() {
     return this.props.character.comics.map((comic) => {
       // return (<img src={`${comic.images[0].path}/detail.${comic.images[0].extension}`}/>)
-      return(<img src={`${comic.images[0].path}/portrait_fantastic.jpg`}/>)
+      // {console.log(comic)}
+      return(<img src={`${comic.thumbnail.path}/portrait_fantastic.jpg`}/>)
     })
   }
 
