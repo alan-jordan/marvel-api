@@ -15235,11 +15235,8 @@ var ChracterCard = function (_React$Component) {
     key: 'renderComics',
     value: function renderComics() {
       return this.props.character.comics.map(function (comic) {
-        return _react2.default.createElement(
-          'h1',
-          null,
-          comic.title
-        );
+        // return (<img src={`${comic.images[0].path}/detail.${comic.images[0].extension}`}/>)
+        return _react2.default.createElement('img', { src: comic.images[0].path + '/portrait_fantastic.jpg' });
       });
     }
   }, {
