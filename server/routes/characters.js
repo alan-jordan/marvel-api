@@ -36,4 +36,13 @@ router.get('/characters/search/:name', (req, res) => {
     })
 })
 
+router.get('/characters/:id/comics', (req, res) => {
+  request
+    .get(`${process.env.URL}/v1/public/characters/${req.params.id}/comics?ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`)
+    .set('Accept', 'application/json')
+    .end((error, response) => {
+      error ? console.log(error) : res.json(response.body)
+    })
+})
+
 module.exports = router

@@ -15050,6 +15050,10 @@ var _CharacterSearch = __webpack_require__(195);
 
 var _CharacterSearch2 = _interopRequireDefault(_CharacterSearch);
 
+var _Comic = __webpack_require__(482);
+
+var _Comic2 = _interopRequireDefault(_Comic);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App() {
@@ -15061,7 +15065,8 @@ var App = function App() {
       { className: 'app-container' },
       _react2.default.createElement(_Header2.default, null),
       _react2.default.createElement(_CharacterSearch2.default, null),
-      _react2.default.createElement(_CharacterCard2.default, null)
+      _react2.default.createElement(_CharacterCard2.default, null),
+      _react2.default.createElement(_reactRouterDom.Route, { path: '/comics', exact: true, component: _Comic2.default })
     )
   );
 };
@@ -15107,7 +15112,7 @@ exports.default = store;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.setCharacter = exports.getCharacter = undefined;
+exports.setCharacterComics = exports.getCharacterComics = exports.setCharacter = exports.getCharacter = undefined;
 
 var _superagent = __webpack_require__(474);
 
@@ -15124,7 +15129,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var getCharacter = exports.getCharacter = function getCharacter(searchStr) {
   return function (dispatch) {
     _superagent2.default.get('/api/v1/characters/search/' + searchStr).end(function (err, res) {
-      return err ? dispatch(errors.throwError(err.message)) : dispatch(setCharacter(res.body.data));
+      return err ? dispatch(errors.throwError(err.message)) : dispatch(setCharacter(res.body.data)).then(dispatch(getCharacterComics(res.body.data.results[0].id)));
     });
   };
 };
@@ -15137,6 +15142,21 @@ var setCharacter = exports.setCharacter = function setCharacter(characterObj) {
       characterImage: characterObj.results[0].thumbnail.path + '/detail.' + characterObj.results[0].thumbnail.extension,
       description: '' + characterObj.results[0].description
     }
+  };
+};
+
+var getCharacterComics = exports.getCharacterComics = function getCharacterComics(id) {
+  return function (dispatch) {
+    _superagent2.default.get('/api/v1/characters/' + id + '/comics').end(function (err, res) {
+      return err ? dispatch(errors.throwError(err.message)) : dispatch(setCharacterComics(res.body.data.results));
+    });
+  };
+};
+
+var setCharacterComics = exports.setCharacterComics = function setCharacterComics(comicsArray) {
+  return {
+    type: 'SET_CHARACTER_COMICS',
+    comics: comicsArray
   };
 };
 
@@ -15212,24 +15232,48 @@ var ChracterCard = function (_React$Component) {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(nextProps) {}
   }, {
+    key: 'renderComics',
+    value: function renderComics() {
+      return this.props.character.comics.map(function (comic) {
+        return _react2.default.createElement(
+          'h1',
+          null,
+          comic.title
+        );
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
-        _MuiThemeProvider2.default,
+        'div',
         null,
         _react2.default.createElement(
-          _Card.Card,
-          { style: style },
+          _MuiThemeProvider2.default,
+          null,
           _react2.default.createElement(
-            _Card.CardMedia,
-            { overlay: _react2.default.createElement(_Card.CardTitle, { title: this.props.character.name }) },
-            _react2.default.createElement('img', { src: this.props.character.characterImage, alt: this.props.character.name })
-          ),
-          _react2.default.createElement(
-            _Card.CardText,
-            null,
-            this.props.character.description
+            _Card.Card,
+            { style: style },
+            _react2.default.createElement(
+              _Card.CardMedia,
+              { overlay: _react2.default.createElement(_Card.CardTitle, { title: this.props.character.name }) },
+              _react2.default.createElement('img', { src: this.props.character.characterImage, alt: this.props.character.name })
+            ),
+            _react2.default.createElement(
+              _Card.CardText,
+              null,
+              this.props.character.description
+            )
           )
+        ),
+        this.props.character.comics.length > 0 ? _react2.default.createElement(
+          'h1',
+          null,
+          this.renderComics()
+        ) : _react2.default.createElement(
+          'h1',
+          null,
+          'No comics'
         )
       );
     }
@@ -15390,10 +15434,14 @@ document.addEventListener('DOMContentLoaded', function () {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var initialState = {
   name: 'None selected',
   characterImage: 'https://cmkt-image-prd.global.ssl.fastly.net/0.1.0/ps/2420378/580/580/m1/fpnw/wm0/1080-.jpg?1489744788&s=8e8c4c9ca5dbda3a322fa256c2f0a71d',
-  description: 'None yet'
+  description: 'None yet',
+  comics: []
 };
 
 function characters() {
@@ -15402,7 +15450,15 @@ function characters() {
 
   switch (action.type) {
     case 'SET_CHARACTER':
-      return action.character;
+      return _extends({}, state, {
+        name: action.character.name,
+        characterImage: action.character.characterImage,
+        description: action.character.description
+      });
+    case 'SET_CHARACTER_COMICS':
+      return _extends({}, state, {
+        comics: action.comics
+      });
     default:
       return state;
   }
@@ -43670,6 +43726,67 @@ module.exports = function() {
 	throw new Error("define cannot be used indirect");
 };
 
+
+/***/ }),
+/* 482 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(57);
+
+var _MuiThemeProvider = __webpack_require__(146);
+
+var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Comic = function (_React$Component) {
+  _inherits(Comic, _React$Component);
+
+  function Comic() {
+    _classCallCheck(this, Comic);
+
+    return _possibleConstructorReturn(this, (Comic.__proto__ || Object.getPrototypeOf(Comic)).apply(this, arguments));
+  }
+
+  _createClass(Comic, [{
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {}
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(_MuiThemeProvider2.default, null);
+    }
+  }]);
+
+  return Comic;
+}(_react2.default.Component);
+
+function mapStateToProps(state) {
+  return {
+    comic: state.comic
+  };
+}
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps)(Comic);
 
 /***/ })
 /******/ ]);

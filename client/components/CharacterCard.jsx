@@ -14,8 +14,15 @@ class ChracterCard extends React.Component {
   componentWillReceiveProps(nextProps) {
   }
 
+  renderComics() {
+    return this.props.character.comics.map((comic) => {
+      return (<h1>{comic.title}</h1>)
+    })
+  }
+
   render() {
     return (
+      <div>
         <MuiThemeProvider>
           <Card style={style}>
             <CardMedia overlay={<CardTitle title={this.props.character.name} />}>
@@ -26,6 +33,8 @@ class ChracterCard extends React.Component {
           </CardText>
         </Card>
       </MuiThemeProvider>
+      {this.props.character.comics.length > 0 ? <h1>{this.renderComics()}</h1> : <h1>No comics</h1>}
+    </div>
     )
   }
 }
