@@ -15215,8 +15215,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var style = {
-  width: '90vw',
-  margin: '0 auto'
+  width: "90vw",
+  margin: "0 auto"
 };
 
 var ChracterCard = function (_React$Component) {
@@ -15229,22 +15229,20 @@ var ChracterCard = function (_React$Component) {
   }
 
   _createClass(ChracterCard, [{
-    key: 'componentWillReceiveProps',
+    key: "componentWillReceiveProps",
     value: function componentWillReceiveProps(nextProps) {}
   }, {
-    key: 'renderComics',
+    key: "renderComics",
     value: function renderComics() {
       return this.props.character.comics.map(function (comic) {
-        // return (<img src={`${comic.images[0].path}/detail.${comic.images[0].extension}`}/>)
-        // {console.log(comic)}
-        return _react2.default.createElement('img', { src: comic.thumbnail.path + '/portrait_fantastic.jpg' });
+        return _react2.default.createElement("img", { src: comic.thumbnail.path + "/portrait_fantastic.jpg" });
       });
     }
   }, {
-    key: 'render',
+    key: "render",
     value: function render() {
       return _react2.default.createElement(
-        'div',
+        "div",
         null,
         _react2.default.createElement(
           _MuiThemeProvider2.default,
@@ -15254,8 +15252,13 @@ var ChracterCard = function (_React$Component) {
             { style: style },
             _react2.default.createElement(
               _Card.CardMedia,
-              { overlay: _react2.default.createElement(_Card.CardTitle, { title: this.props.character.name }) },
-              _react2.default.createElement('img', { src: this.props.character.characterImage, alt: this.props.character.name })
+              {
+                overlay: _react2.default.createElement(_Card.CardTitle, { title: this.props.character.name })
+              },
+              _react2.default.createElement("img", {
+                src: this.props.character.characterImage,
+                alt: this.props.character.name
+              })
             ),
             _react2.default.createElement(
               _Card.CardText,
@@ -15265,13 +15268,13 @@ var ChracterCard = function (_React$Component) {
           )
         ),
         this.props.character.comics.length > 0 ? _react2.default.createElement(
-          'h1',
-          null,
+          "div",
+          { className: "comics" },
           this.renderComics()
         ) : _react2.default.createElement(
-          'h1',
+          "h1",
           null,
-          'No comics'
+          "No comics"
         )
       );
     }
