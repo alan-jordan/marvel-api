@@ -3494,9 +3494,43 @@ var Characters = function (_React$Component) {
     key: "render",
     value: function render() {
       return _react2.default.createElement(
-        "p",
+        "div",
         null,
-        "Characters"
+        _react2.default.createElement(
+          "h2",
+          null,
+          "Characters"
+        ),
+        _react2.default.createElement(
+          "h3",
+          null,
+          "Pick One"
+        ),
+        _react2.default.createElement(
+          "p",
+          null,
+          "Wolverine"
+        ),
+        _react2.default.createElement(
+          "p",
+          null,
+          "Daredevil"
+        ),
+        _react2.default.createElement(
+          "p",
+          null,
+          "Thor"
+        ),
+        _react2.default.createElement(
+          "p",
+          null,
+          "Cap"
+        ),
+        _react2.default.createElement(
+          "p",
+          null,
+          "Groot"
+        )
       );
     }
   }]);
@@ -3511,6 +3545,12 @@ var mapStatetoProps = function mapStatetoProps(state) {
 };
 
 exports.default = (0, _reactRedux.connect)(mapStatetoProps)(Characters);
+
+//1009718 - wolverine
+//1009262 - daredevil
+//1009664 - thor
+//1009220 - Cap
+//1010743 - Groot
 
 /***/ }),
 /* 52 */
