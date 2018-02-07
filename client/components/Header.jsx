@@ -1,18 +1,14 @@
-import React from 'react'
-import AppBar from 'material-ui/AppBar'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import React from "react";
 
-const style = {
-  width: '90vw',
-  margin: '0 auto'
-}
+import NavHeader from "./subComponents/navHeader";
 
 const Header = () => {
   return (
-    <MuiThemeProvider>
-      <AppBar style ={style} title="Marvel API" />
-    </MuiThemeProvider>
-  )
-}
+    <div className="marvelHeader">
+      <h1>Excelsior!</h1>
+      <NavHeader />
+    </div>
+  );
+};
 
-export default Header
+export default Header;

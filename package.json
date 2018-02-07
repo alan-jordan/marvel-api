@@ -2,7 +2,8 @@
   "name": "boilerplate-react-webpack",
   "version": "0.1.1",
   "description": "A webpack React starter",
-  "repository": "https://github.com/dev-academy-challenges/boilerplate-react-webpack.git",
+  "repository":
+    "https://github.com/dev-academy-challenges/boilerplate-react-webpack.git",
   "main": "server/index.js",
   "scripts": {
     "dev": "nodemon --watch server server/index & webpack --watch",
@@ -20,11 +21,7 @@
     "babel": "inherit"
   },
   "babel": {
-    "presets": [
-      "es2015",
-      "react",
-      "stage-0"
-    ]
+    "presets": ["es2015", "react", "stage-0"]
   },
   "author": "EDA",
   "license": "ISC",
@@ -56,8 +53,6 @@
     "dotenv": "^4.0.0",
     "express": "^4.14.0",
     "knex": "^0.13.0",
-    "material-ui": "^0.18.7",
-    "material-ui-search-bar": "^0.3.0",
     "pg": "^6.2.3",
     "react-redux": "^5.0.5",
     "redux": "^3.6.0",
