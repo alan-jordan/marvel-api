@@ -3478,19 +3478,20 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var getCharacter = exports.getCharacter = function getCharacter(characterId) {
+var getCharacter = exports.getCharacter = function getCharacter(characterId, key) {
   return function (dispatch) {
     _superagent2.default.get("/api/v1/characters/" + characterId).end(function (err, res) {
-      return err ? dispatch(errors.throwError(err.message)) : dispatch(setCharacter(res.body.data));
+      return err ? dispatch(errors.throwError(err.message)) : dispatch(setCharacter(res.body.data, key));
     });
   };
 };
 
-var setCharacter = exports.setCharacter = function setCharacter(characterObj) {
-  console.log(characterObj);
+var setCharacter = exports.setCharacter = function setCharacter(characterObj, key) {
   return {
     type: "SET_CHARACTER",
     character: {
+      key: key,
+      id: characterObj.results[0].id,
       name: characterObj.results[0].name,
       characterImage: characterObj.results[0].thumbnail.path + "/detail." + characterObj.results[0].thumbnail.extension,
       description: "" + characterObj.results[0].description
@@ -3562,8 +3563,8 @@ var Characters = function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      characterIdArray.map(function (character) {
-        return _this2.props.dispatch((0, _characters.getCharacter)(character));
+      characterIdArray.map(function (character, key) {
+        return _this2.props.dispatch((0, _characters.getCharacter)(character, key));
       });
     }
   }, {
@@ -3584,6 +3585,7 @@ var Characters = function (_React$Component) {
         ),
         this.props.characters.length > 0 && this.props.characters.map(function (character, key) {
           return _react2.default.createElement(_CharacterSelector2.default, {
+            id: character.id,
             key: character.key,
             name: character.name,
             description: character.description,
@@ -3598,7 +3600,6 @@ var Characters = function (_React$Component) {
 }(_react2.default.Component);
 
 var mapStatetoProps = function mapStatetoProps(state) {
-  console.log(state);
   return {
     characters: state.characters
   };
@@ -27706,6 +27707,8 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(13);
 
+var _reactRouterDom = __webpack_require__(101);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -27713,8 +27716,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var characterIdArray = [1009718, 1009262, 1009664, 1009220];
 
 var CharacterSelector = function (_React$Component) {
   _inherits(CharacterSelector, _React$Component);
@@ -27730,12 +27731,25 @@ var CharacterSelector = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         "div",
-        { className: "characterSelector" },
-        _react2.default.createElement("img", { className: "thumbNail", src: this.props.characterImage }),
+        { className: "character" },
         _react2.default.createElement(
           "div",
-          { "class": "bottom-left" },
-          this.props.name
+          { className: "characterSelector" },
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { to: "character/" + this.props.id },
+            _react2.default.createElement("img", { className: "thumbNail", src: this.props.characterImage })
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "bottom-left" },
+            this.props.name
+          )
+        ),
+        _react2.default.createElement(
+          "p",
+          null,
+          this.props.description
         )
       );
     }
@@ -27745,12 +27759,6 @@ var CharacterSelector = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = (0, _reactRedux.connect)()(CharacterSelector);
-
-//1009718 - wolverine
-//1009262 - daredevil
-//1009664 - thor
-//1009220 - Cap
-//1010743 - Groot
 
 /***/ })
 /******/ ]);

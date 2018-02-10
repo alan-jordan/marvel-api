@@ -2,7 +2,7 @@ import request from "superagent";
 
 import * as errors from "./errors";
 
-export const getCharacter = characterId => {
+export const getCharacter = (characterId, key) => {
   return dispatch => {
     request
       .get(`/api/v1/characters/${characterId}`)
@@ -10,16 +10,17 @@ export const getCharacter = characterId => {
         (err, res) =>
           err
             ? dispatch(errors.throwError(err.message))
-            : dispatch(setCharacter(res.body.data))
+            : dispatch(setCharacter(res.body.data, key))
       );
   };
 };
 
-export const setCharacter = characterObj => {
-  console.log(characterObj);
+export const setCharacter = (characterObj, key) => {
   return {
     type: "SET_CHARACTER",
     character: {
+      key: key,
+      id: characterObj.results[0].id,
       name: characterObj.results[0].name,
       characterImage: `${characterObj.results[0].thumbnail.path}/detail.${
         characterObj.results[0].thumbnail.extension

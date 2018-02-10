@@ -8,8 +8,8 @@ const characterIdArray = [1009718, 1009262, 1009664, 1009220];
 
 class Characters extends React.Component {
   componentDidMount() {
-    characterIdArray.map(character =>
-      this.props.dispatch(getCharacter(character))
+    characterIdArray.map((character, key) =>
+      this.props.dispatch(getCharacter(character, key))
     );
   }
 
@@ -21,6 +21,7 @@ class Characters extends React.Component {
         {this.props.characters.length > 0 &&
           this.props.characters.map((character, key) => (
             <CharacterSelector
+              id={character.id}
               key={character.key}
               name={character.name}
               description={character.description}
@@ -33,7 +34,6 @@ class Characters extends React.Component {
 }
 
 const mapStatetoProps = state => {
-  console.log(state);
   return {
     characters: state.characters
   };
