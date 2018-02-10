@@ -17,7 +17,7 @@ export const getCharacter = (characterId, key) => {
 
 export const setCharacter = (characterObj, key) => {
   return {
-    type: "SET_CHARACTER",
+    type: "ADD_CHARACTER",
     character: {
       key: key,
       id: characterObj.results[0].id,

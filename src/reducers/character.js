@@ -1,11 +1,12 @@
 import update from "immutability-helper";
 
-const initialState = [];
+const initialState = {};
 
 function characters(state = initialState, action) {
+  console.log(action);
   switch (action.type) {
-    case "ADD_CHARACTER":
-      return update(state, { $push: [action.character] });
+    case "SET_CHARACTER":
+      return update(state, { $set: action.character });
     default:
       return state;
   }

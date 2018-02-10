@@ -4,12 +4,14 @@ import { connect } from "react-redux";
 
 import Header from "../components/layout/Header";
 import Characters from "../components/characters/Characters";
+import Character from "../components/characters/Character";
 
 const App = () => (
   <Router>
     <div className="app-container">
       <Header />
-      <Characters />
+      <Route exact path="/" component={Characters} />
+      <Route exact path="/character/:id" component={Character} />
     </div>
   </Router>
 );
